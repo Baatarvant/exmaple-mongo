@@ -6,6 +6,7 @@ type User = {
   email: string;
   avatar?: string;
   password: string;
+  role: "USER" | "ADMIN";
 };
 
 const userSchema = new Schema<User>({
@@ -14,6 +15,7 @@ const userSchema = new Schema<User>({
   email: { type: String, required: true },
   avatar: String,
   password: { type: String, required: true },
+  role: { type: String, enum: ["USER", "ADMIN"], default: "USER" },
 });
 
 export const userModel = model<User>("User", userSchema);
